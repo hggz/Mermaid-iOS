@@ -2,43 +2,43 @@ import CoreGraphics
 import Foundation
 
 /// Layout configuration for diagram rendering.
-struct LayoutConfig {
+public struct LayoutConfig {
     // General
-    var padding: CGFloat = 40
-    var backgroundColor: CGColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+    public var padding: CGFloat = 40
+    public var backgroundColor: CGColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
 
     // Fonts
-    var fontSize: CGFloat = 14
-    var titleFontSize: CGFloat = 18
-    var fontName: String = "Helvetica"
-    var boldFontName: String = "Helvetica-Bold"
+    public var fontSize: CGFloat = 14
+    public var titleFontSize: CGFloat = 18
+    public var fontName: String = "Helvetica"
+    public var boldFontName: String = "Helvetica-Bold"
 
     // Colors
-    var nodeColor: CGColor = CGColor(red: 0.85, green: 0.92, blue: 1.0, alpha: 1)
-    var nodeBorderColor: CGColor = CGColor(red: 0.2, green: 0.4, blue: 0.7, alpha: 1)
-    var edgeColor: CGColor = CGColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
-    var textColor: CGColor = CGColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
-    var arrowColor: CGColor = CGColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+    public var nodeColor: CGColor = CGColor(red: 0.85, green: 0.92, blue: 1.0, alpha: 1)
+    public var nodeBorderColor: CGColor = CGColor(red: 0.2, green: 0.4, blue: 0.7, alpha: 1)
+    public var edgeColor: CGColor = CGColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+    public var textColor: CGColor = CGColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+    public var arrowColor: CGColor = CGColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
 
     // Flowchart
-    var nodeWidth: CGFloat = 150
-    var nodeHeight: CGFloat = 50
-    var nodeCornerRadius: CGFloat = 8
-    var horizontalSpacing: CGFloat = 60
-    var verticalSpacing: CGFloat = 60
-    var lineWidth: CGFloat = 2
+    public var nodeWidth: CGFloat = 150
+    public var nodeHeight: CGFloat = 50
+    public var nodeCornerRadius: CGFloat = 8
+    public var horizontalSpacing: CGFloat = 60
+    public var verticalSpacing: CGFloat = 60
+    public var lineWidth: CGFloat = 2
 
     // Sequence diagram
-    var participantWidth: CGFloat = 120
-    var participantHeight: CGFloat = 40
-    var participantSpacing: CGFloat = 40
-    var messageSpacing: CGFloat = 50
-    var lifelineColor: CGColor = CGColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
+    public var participantWidth: CGFloat = 120
+    public var participantHeight: CGFloat = 40
+    public var participantSpacing: CGFloat = 40
+    public var messageSpacing: CGFloat = 50
+    public var lifelineColor: CGColor = CGColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
 
     // Pie chart
-    var pieRadius: CGFloat = 120
-    var pieLabelOffset: CGFloat = 30
-    var pieColors: [CGColor] = [
+    public var pieRadius: CGFloat = 120
+    public var pieLabelOffset: CGFloat = 30
+    public var pieColors: [CGColor] = [
         CGColor(red: 0.26, green: 0.52, blue: 0.96, alpha: 1), // blue
         CGColor(red: 0.92, green: 0.34, blue: 0.34, alpha: 1), // red
         CGColor(red: 0.30, green: 0.69, blue: 0.31, alpha: 1), // green
@@ -49,7 +49,9 @@ struct LayoutConfig {
         CGColor(red: 0.91, green: 0.47, blue: 0.62, alpha: 1), // pink
     ]
 
-    static let `default` = LayoutConfig()
+    public init() {}
+
+    public static let `default` = LayoutConfig()
 }
 
 // MARK: - Layout Result Types

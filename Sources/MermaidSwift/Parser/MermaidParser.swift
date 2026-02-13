@@ -3,14 +3,14 @@ import Foundation
 /// Parses Mermaid DSL strings into diagram model objects.
 ///
 /// Supports: flowchart, sequenceDiagram, pie
-struct MermaidParser {
+public struct MermaidParser {
 
-    enum ParseError: LocalizedError, Equatable {
+    public enum ParseError: LocalizedError, Equatable {
         case emptyInput
         case unknownDiagramType(String)
         case invalidSyntax(String)
 
-        var errorDescription: String? {
+        public var errorDescription: String? {
             switch self {
             case .emptyInput:
                 return "Empty diagram input"

@@ -9,11 +9,11 @@ import Foundation
 // MARK: - Diagram Protocol
 
 /// A parsed diagram that can be laid out and rendered.
-protocol Diagram {
+public protocol Diagram {
     var type: DiagramType { get }
 }
 
-enum DiagramType: String, Equatable {
+public enum DiagramType: String, Equatable, Sendable {
     case flowchart
     case sequenceDiagram = "sequenceDiagram"
     case pie
@@ -22,13 +22,13 @@ enum DiagramType: String, Equatable {
 
 // MARK: - Flowchart
 
-struct FlowchartDiagram: Diagram {
-    let type: DiagramType = .flowchart
-    let direction: FlowDirection
-    var nodes: [FlowNode]
-    var edges: [FlowEdge]
+public struct FlowchartDiagram: Diagram {
+    public let type: DiagramType = .flowchart
+    public let direction: FlowDirection
+    public var nodes: [FlowNode]
+    public var edges: [FlowEdge]
 
-    enum FlowDirection: String {
+    public enum FlowDirection: String {
         case topToBottom = "TD"
         case topDown = "TB"
         case bottomToTop = "BT"
@@ -37,12 +37,12 @@ struct FlowchartDiagram: Diagram {
     }
 }
 
-struct FlowNode: Equatable, Hashable {
-    let id: String
-    let label: String
-    let shape: NodeShape
+public struct FlowNode: Equatable, Hashable, Sendable {
+    public let id: String
+    public let label: String
+    public let shape: NodeShape
 
-    enum NodeShape: Equatable, Hashable {
+    public enum NodeShape: Equatable, Hashable, Sendable {
         case rectangle       // [text]
         case roundedRect     // (text)
         case stadium         // ([text])
@@ -53,13 +53,13 @@ struct FlowNode: Equatable, Hashable {
     }
 }
 
-struct FlowEdge: Equatable {
-    let from: String
-    let to: String
-    let label: String?
-    let style: EdgeStyle
+public struct FlowEdge: Equatable, Sendable {
+    public let from: String
+    public let to: String
+    public let label: String?
+    public let style: EdgeStyle
 
-    enum EdgeStyle: Equatable {
+    public enum EdgeStyle: Equatable, Sendable {
         case solid       // -->
         case dotted      // -.->
         case thick       // ==>
@@ -69,24 +69,24 @@ struct FlowEdge: Equatable {
 
 // MARK: - Sequence Diagram
 
-struct SequenceDiagram: Diagram {
-    let type: DiagramType = .sequenceDiagram
-    var participants: [Participant]
-    var messages: [Message]
+public struct SequenceDiagram: Diagram {
+    public let type: DiagramType = .sequenceDiagram
+    public var participants: [Participant]
+    public var messages: [Message]
 }
 
-struct Participant: Equatable, Hashable {
-    let id: String
-    let label: String
+public struct Participant: Equatable, Hashable, Sendable {
+    public let id: String
+    public let label: String
 }
 
-struct Message: Equatable {
-    let from: String
-    let to: String
-    let text: String
-    let style: MessageStyle
+public struct Message: Equatable, Sendable {
+    public let from: String
+    public let to: String
+    public let text: String
+    public let style: MessageStyle
 
-    enum MessageStyle: Equatable {
+    public enum MessageStyle: Equatable, Sendable {
         case solidArrow        // ->>
         case dottedArrow       // -->>
         case solidLine         // ->
@@ -98,13 +98,13 @@ struct Message: Equatable {
 
 // MARK: - Pie Chart
 
-struct PieChartDiagram: Diagram {
-    let type: DiagramType = .pie
-    let title: String?
-    var slices: [PieSlice]
+public struct PieChartDiagram: Diagram {
+    public let type: DiagramType = .pie
+    public let title: String?
+    public var slices: [PieSlice]
 }
 
-struct PieSlice: Equatable {
-    let label: String
-    let value: Double
+public struct PieSlice: Equatable, Sendable {
+    public let label: String
+    public let value: Double
 }

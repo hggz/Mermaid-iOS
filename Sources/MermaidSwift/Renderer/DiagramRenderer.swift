@@ -4,10 +4,6 @@ import Foundation
 import ImageIO
 import UniformTypeIdentifiers
 
-#if canImport(UIKit)
-import UIKit
-#endif
-
 /// Renders laid-out diagrams to CGImage using CoreGraphics.
 struct DiagramRenderer {
 
@@ -413,12 +409,12 @@ struct DiagramRenderer {
         let fontName = bold ? config.boldFontName : config.fontName
         guard let font = CTFontCreateWithName(fontName as CFString, fontSize, nil) as CTFont? else { return }
 
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font,
-            .foregroundColor: config.textColor
+        let attributes: [CFString: Any] = [
+            kCTFontAttributeName: font,
+            kCTForegroundColorAttributeName: config.textColor
         ]
 
-        let attrStr = NSAttributedString(string: text, attributes: attributes)
+        let attrStr = CFAttributedStringCreate(kCFAllocatorDefault, text as CFString, attributes as CFDictionary)!
         let line = CTLineCreateWithAttributedString(attrStr)
         let bounds = CTLineGetBoundsWithOptions(line, [])
 
@@ -447,8 +443,8 @@ struct DiagramRenderer {
 
     func measureText(_ text: String, fontSize: CGFloat) -> CGSize {
         let font = CTFontCreateWithName(config.fontName as CFString, fontSize, nil)
-        let attributes: [NSAttributedString.Key: Any] = [.font: font]
-        let attrStr = NSAttributedString(string: text, attributes: attributes)
+        let attributes: [CFString: Any] = [kCTFontAttributeName: font]
+        let attrStr = CFAttributedStringCreate(kCFAllocatorDefault, text as CFString, attributes as CFDictionary)!
         let line = CTLineCreateWithAttributedString(attrStr)
         let bounds = CTLineGetBoundsWithOptions(line, [])
         return CGSize(width: bounds.width, height: bounds.height)

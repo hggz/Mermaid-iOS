@@ -1,5 +1,5 @@
 import XCTest
-@testable import MermaidRenderer
+@testable import MermaidSwift
 
 final class MermaidParserTests: XCTestCase {
 

@@ -4,9 +4,7 @@ Pure Swift Mermaid diagram renderer for iOS — no JavaScript, no WKWebView, no 
 
 Parses [Mermaid](https://mermaid.js.org/) diagram syntax and renders to `CGImage` using CoreGraphics.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hggz/Mermaid-iOS/main/screenshot.png" alt="Mermaid-iOS Screenshot" width="300">
-</p>
+![Mermaid-iOS Screenshot](screenshot.png)
 
 ## Features
 
@@ -18,6 +16,29 @@ Parses [Mermaid](https://mermaid.js.org/) diagram syntax and renders to `CGImage
 - **Pie charts**: Titled, decimal values, color-coded slices with legend
 - **PNG export**: Render directly to `Data` for saving or sharing
 - **2x Retina rendering** out of the box
+
+## Installation
+
+### Swift Package Manager
+
+Add to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/hggz/Mermaid-iOS.git", from: "1.0.0")
+]
+```
+
+Then add `MermaidSwift` to your target dependencies:
+
+```swift
+.target(
+    name: "YourApp",
+    dependencies: ["MermaidSwift"]
+)
+```
+
+Or in Xcode: **File → Add Package Dependencies** → paste `https://github.com/hggz/Mermaid-iOS.git`
 
 ## Quick Start
 
