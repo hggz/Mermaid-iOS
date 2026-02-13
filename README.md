@@ -5,7 +5,7 @@ Pure Swift Mermaid diagram renderer for iOS — no JavaScript, no WKWebView, no 
 Parses [Mermaid](https://mermaid.js.org/) diagram syntax and renders to `CGImage` using CoreGraphics.
 
 <p align="center">
-  <img src="screenshot.png" alt="Mermaid-iOS Screenshot" width="300">
+  <img src="https://raw.githubusercontent.com/hggz/Mermaid-iOS/main/screenshot.png" alt="Mermaid-iOS Screenshot" width="300">
 </p>
 
 ## Features
