@@ -9,21 +9,70 @@
 /* Begin PBXBuildFile section */
 		02979D812A2992F2FD7A87B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693B93D7788FAB156A7A8547 /* ContentView.swift */; };
 		08420F99A8379073995C951C /* MermaidRendererApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27ACD90616BC61D769ACAC /* MermaidRendererApp.swift */; };
+		169312BE9863F552458E1D47 /* MermaidSwiftIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5BF4086991C095A10D4517 /* MermaidSwiftIntegrationTests.swift */; };
+		4E55F2E8B41A8730ECAB9309 /* DiagramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0506EBC7796D5339373FC98 /* DiagramModel.swift */; };
 		4ECEE43FFC4F4DE033D80519 /* mermaid.min.js in Resources */ = {isa = PBXBuildFile; fileRef = B0F080C774F6F5FEF959CBF7 /* mermaid.min.js */; };
+		52B3B808E2964582FE334DD3 /* DiagramRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE240756DD2462A51BE45A9 /* DiagramRendererTests.swift */; };
+		5B744CB3F9A16F957E9842F0 /* DiagramRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699FBC46D8C391D5CB9ECB84 /* DiagramRenderer.swift */; };
 		8484C1BE13CD635563D875B4 /* MermaidRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F17F03DDBED2F4063880EFB /* MermaidRenderer.swift */; };
+		9FA2830BF8162F6EF40E7F9E /* DiagramLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE24CA2E29EBE86A2BE32C /* DiagramLayout.swift */; };
+		AB9C5EED0FE986A9B9DCFBCC /* MermaidSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E71A1A38D3A2C2FA5FC3FE /* MermaidSwift.swift */; };
 		AF207AC55FFCCC91974F7259 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35E3388E4896FC632838AA73 /* Assets.xcassets */; };
+		BE3530C6959212F6DA4FB7E7 /* MermaidParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732556D17867D85D5ACA83A2 /* MermaidParserTests.swift */; };
+		DDA8746D584038C306DEA4AD /* DiagramLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0B0A307B5050DC88E99115 /* DiagramLayoutTests.swift */; };
+		F3A3DE591FE20C4752B8D79A /* MermaidParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C359D4F998DE7F871CABABCF /* MermaidParser.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8CC5796A4C04DD95C637E34E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FC943680E142A8736771CC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67CCE2211CBD9F023F784995;
+			remoteInfo = MermaidRenderer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0C5BF4086991C095A10D4517 /* MermaidSwiftIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidSwiftIntegrationTests.swift; sourceTree = "<group>"; };
+		2BE240756DD2462A51BE45A9 /* DiagramRendererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramRendererTests.swift; sourceTree = "<group>"; };
 		35E3388E4896FC632838AA73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43E71A1A38D3A2C2FA5FC3FE /* MermaidSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidSwift.swift; sourceTree = "<group>"; };
 		5A27ACD90616BC61D769ACAC /* MermaidRendererApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidRendererApp.swift; sourceTree = "<group>"; };
 		693B93D7788FAB156A7A8547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		699FBC46D8C391D5CB9ECB84 /* DiagramRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramRenderer.swift; sourceTree = "<group>"; };
+		732556D17867D85D5ACA83A2 /* MermaidParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidParserTests.swift; sourceTree = "<group>"; };
 		760DB8A560F6E7D98D6AE939 /* MermaidRenderer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MermaidRenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F17F03DDBED2F4063880EFB /* MermaidRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidRenderer.swift; sourceTree = "<group>"; };
 		B0F080C774F6F5FEF959CBF7 /* mermaid.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = mermaid.min.js; sourceTree = "<group>"; };
+		C359D4F998DE7F871CABABCF /* MermaidParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MermaidParser.swift; sourceTree = "<group>"; };
+		C4AE24CA2E29EBE86A2BE32C /* DiagramLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramLayout.swift; sourceTree = "<group>"; };
+		CB0B0A307B5050DC88E99115 /* DiagramLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramLayoutTests.swift; sourceTree = "<group>"; };
+		D0506EBC7796D5339373FC98 /* DiagramModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagramModel.swift; sourceTree = "<group>"; };
+		DADEB1A1EF41253D0AEBBA72 /* MermaidSwiftTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MermaidSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0A3095D3634A0F6AE3B376ED /* MermaidSwift */ = {
+			isa = PBXGroup;
+			children = (
+				43E71A1A38D3A2C2FA5FC3FE /* MermaidSwift.swift */,
+				806377CBEECAF891E3421899 /* Layout */,
+				6A4185B8B13FCD243245CDBC /* Model */,
+				177189C6A437ECED16A29469 /* Parser */,
+				7933150E23DD62CAC2111576 /* Renderer */,
+			);
+			path = MermaidSwift;
+			sourceTree = "<group>";
+		};
+		177189C6A437ECED16A29469 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				C359D4F998DE7F871CABABCF /* MermaidParser.swift */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
 		17EA7426F7A920558A32CC2C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -31,6 +80,7 @@
 				693B93D7788FAB156A7A8547 /* ContentView.swift */,
 				9F17F03DDBED2F4063880EFB /* MermaidRenderer.swift */,
 				5A27ACD90616BC61D769ACAC /* MermaidRendererApp.swift */,
+				0A3095D3634A0F6AE3B376ED /* MermaidSwift */,
 				642F4D14F79FAFB9887C813E /* Resources */,
 			);
 			path = Sources;
@@ -40,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				760DB8A560F6E7D98D6AE939 /* MermaidRenderer.app */,
+				DADEB1A1EF41253D0AEBBA72 /* MermaidSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,17 +103,71 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6A4185B8B13FCD243245CDBC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0506EBC7796D5339373FC98 /* DiagramModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		72D08AA808AA6008F9A937C9 = {
 			isa = PBXGroup;
 			children = (
 				17EA7426F7A920558A32CC2C /* Sources */,
+				83989A7E54090F2A26C91B95 /* Tests */,
 				2DD79C0176CE04502ACA33F8 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		7933150E23DD62CAC2111576 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				699FBC46D8C391D5CB9ECB84 /* DiagramRenderer.swift */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		806377CBEECAF891E3421899 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				C4AE24CA2E29EBE86A2BE32C /* DiagramLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		83989A7E54090F2A26C91B95 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CB0B0A307B5050DC88E99115 /* DiagramLayoutTests.swift */,
+				2BE240756DD2462A51BE45A9 /* DiagramRendererTests.swift */,
+				732556D17867D85D5ACA83A2 /* MermaidParserTests.swift */,
+				0C5BF4086991C095A10D4517 /* MermaidSwiftIntegrationTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3EEF068086B0E9C93ACC9104 /* MermaidSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54DA0DC6E4D9FF9637F0EF1C /* Build configuration list for PBXNativeTarget "MermaidSwiftTests" */;
+			buildPhases = (
+				5A3D4631991DF76ED965FA81 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C21162F271DFC185164AE74 /* PBXTargetDependency */,
+			);
+			name = MermaidSwiftTests;
+			packageProductDependencies = (
+			);
+			productName = MermaidSwiftTests;
+			productReference = DADEB1A1EF41253D0AEBBA72 /* MermaidSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		67CCE2211CBD9F023F784995 /* MermaidRenderer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F254F79E23AF62BDF5A03EC /* Build configuration list for PBXNativeTarget "MermaidRenderer" */;
@@ -111,6 +216,7 @@
 			projectRoot = "";
 			targets = (
 				67CCE2211CBD9F023F784995 /* MermaidRenderer */,
+				3EEF068086B0E9C93ACC9104 /* MermaidSwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -128,19 +234,77 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5A3D4631991DF76ED965FA81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDA8746D584038C306DEA4AD /* DiagramLayoutTests.swift in Sources */,
+				52B3B808E2964582FE334DD3 /* DiagramRendererTests.swift in Sources */,
+				BE3530C6959212F6DA4FB7E7 /* MermaidParserTests.swift in Sources */,
+				169312BE9863F552458E1D47 /* MermaidSwiftIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		817992AE727099B1A1C941FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				02979D812A2992F2FD7A87B1 /* ContentView.swift in Sources */,
+				9FA2830BF8162F6EF40E7F9E /* DiagramLayout.swift in Sources */,
+				4E55F2E8B41A8730ECAB9309 /* DiagramModel.swift in Sources */,
+				5B744CB3F9A16F957E9842F0 /* DiagramRenderer.swift in Sources */,
+				F3A3DE591FE20C4752B8D79A /* MermaidParser.swift in Sources */,
 				8484C1BE13CD635563D875B4 /* MermaidRenderer.swift in Sources */,
 				08420F99A8379073995C951C /* MermaidRendererApp.swift in Sources */,
+				AB9C5EED0FE986A9B9DCFBCC /* MermaidSwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7C21162F271DFC185164AE74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67CCE2211CBD9F023F784995 /* MermaidRenderer */;
+			targetProxy = 8CC5796A4C04DD95C637E34E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		1538F1BA534B114A92D7C2C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.tools.MermaidSwiftTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MermaidRenderer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MermaidRenderer";
+			};
+			name = Release;
+		};
+		292970641E68F45B5789AA58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.tools.MermaidSwiftTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MermaidRenderer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MermaidRenderer";
+			};
+			name = Debug;
+		};
 		55D7AE14D8F6F9D03944CB5B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +484,15 @@
 			buildConfigurations = (
 				CAFEDB4A62BEDCBF78C1BF4C /* Debug */,
 				55D7AE14D8F6F9D03944CB5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		54DA0DC6E4D9FF9637F0EF1C /* Build configuration list for PBXNativeTarget "MermaidSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				292970641E68F45B5789AA58 /* Debug */,
+				1538F1BA534B114A92D7C2C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

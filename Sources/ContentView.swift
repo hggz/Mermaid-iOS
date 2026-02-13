@@ -1,6 +1,11 @@
 import SwiftUI
 import CoreTransferable
 
+enum RenderEngine: String, CaseIterable {
+    case swift = "Swift (Native)"
+    case webView = "WKWebView (JS)"
+}
+
 struct ContentView: View {
     @State private var diagramText: String = Self.sampleDiagram
     @State private var renderedImage: UIImage?
@@ -8,8 +13,11 @@ struct ContentView: View {
     @State private var errorMessage: String?
     @State private var showExportSheet = false
     @State private var showSavedAlert = false
+    @State private var renderEngine: RenderEngine = .swift
+    @State private var renderTime: TimeInterval = 0
 
-    private let renderer = MermaidRenderer()
+    private let webRenderer = MermaidRenderer()
+    private let swiftRenderer = MermaidSwift()
 
     var body: some View {
         NavigationStack {
@@ -55,13 +63,20 @@ struct ContentView: View {
     private var editorSection: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Text("Mermaid Diagram")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                Picker("Engine", selection: $renderEngine) {
+                    ForEach(RenderEngine.allCases, id: \.self) { engine in
+                        Text(engine.rawValue).tag(engine)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .frame(maxWidth: 280)
                 Spacer()
-                Text("\(diagramText.count) chars")
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
+                if renderTime > 0 {
+                    Text(String(format: "%.0fms", renderTime * 1000))
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                        .monospacedDigit()
+                }
             }
             .padding(.horizontal)
             .padding(.top, 8)
@@ -158,13 +173,23 @@ struct ContentView: View {
     private func renderDiagram() async {
         isRendering = true
         errorMessage = nil
+        renderTime = 0
+
+        let start = CFAbsoluteTimeGetCurrent()
 
         do {
-            let image = try await renderer.render(diagram: diagramText)
-            renderedImage = image
+            switch renderEngine {
+            case .swift:
+                let cgImage = try swiftRenderer.render(diagramText)
+                renderedImage = UIImage(cgImage: cgImage)
+            case .webView:
+                renderedImage = try await webRenderer.render(diagram: diagramText)
+            }
+            renderTime = CFAbsoluteTimeGetCurrent() - start
         } catch {
             errorMessage = error.localizedDescription
             renderedImage = nil
+            renderTime = CFAbsoluteTimeGetCurrent() - start
         }
 
         isRendering = false

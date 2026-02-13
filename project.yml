@@ -35,3 +35,19 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
+
+  MermaidSwiftTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+        excludes:
+          - "**/*.md"
+    dependencies:
+      - target: MermaidRenderer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.microsoft.tools.MermaidSwiftTests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/MermaidRenderer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MermaidRenderer"
+        BUNDLE_LOADER: "$(TEST_HOST)"
