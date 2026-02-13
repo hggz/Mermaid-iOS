@@ -150,13 +150,13 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
             } else if let renderedImage {
-                ScrollView([.horizontal, .vertical]) {
+                GeometryReader { geo in
                     Image(uiImage: renderedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding()
+                        .frame(width: geo.size.width, height: geo.size.height)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
             } else {
                 VStack(spacing: 8) {
                     Image(systemName: "photo.artframe")
