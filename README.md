@@ -299,6 +299,11 @@ pie title Distribution
 
 ### Class Diagrams
 
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
+
 ```mermaid
 classDiagram
     class Animal {
@@ -314,6 +319,13 @@ classDiagram
     Dog *-- Collar
 ```
 
+</td>
+<td>
+<img src="examples/class.png" alt="Class diagram rendered by MermaidSwift" width="300">
+</td>
+</tr>
+</table>
+
 | Relationship | Syntax | Marker |
 |-------------|--------|--------|
 | Inheritance | `<\|--` or `--\|>` | Triangle arrow |
@@ -325,6 +337,11 @@ classDiagram
 
 ### State Diagrams
 
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
+
 ```mermaid
 stateDiagram-v2
     [*] --> Idle
@@ -333,7 +350,19 @@ stateDiagram-v2
     Done --> [*]
 ```
 
+</td>
+<td>
+<img src="examples/state.png" alt="State diagram rendered by MermaidSwift" width="300">
+</td>
+</tr>
+</table>
+
 ### Gantt Charts
+
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
 
 ```mermaid
 gantt
@@ -347,6 +376,13 @@ gantt
         Frontend   :active, 2024-01-20, 15d
 ```
 
+</td>
+<td>
+<img src="examples/gantt.png" alt="Gantt chart rendered by MermaidSwift" width="400">
+</td>
+</tr>
+</table>
+
 | Task Status | Syntax |
 |------------|--------|
 | Normal | *(default)* |
@@ -355,6 +391,11 @@ gantt
 | Critical | `crit` |
 
 ### ER Diagrams
+
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
 
 ```mermaid
 erDiagram
@@ -367,6 +408,13 @@ erDiagram
     }
 ```
 
+</td>
+<td>
+<img src="examples/er.png" alt="ER diagram rendered by MermaidSwift" width="300">
+</td>
+</tr>
+</table>
+
 | Cardinality | Left | Right | Meaning |
 |------------|------|-------|---------|
 | Exactly one | `\|\|` | `\|\|` | One and only one |
@@ -375,6 +423,11 @@ erDiagram
 | One or more | `\|{` | `}\|` | One or more |
 
 ### Subgraphs
+
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
 
 ```mermaid
 graph TD
@@ -387,7 +440,19 @@ graph TD
     B --> C
 ```
 
+</td>
+<td>
+<img src="examples/subgraph.png" alt="Subgraph rendered by MermaidSwift" width="300">
+</td>
+</tr>
+</table>
+
 ### Style Directives
+
+<table>
+<tr><th>Mermaid.js (GitHub)</th><th>MermaidSwift (Native)</th></tr>
+<tr>
+<td>
 
 ```mermaid
 graph TD
@@ -395,6 +460,27 @@ graph TD
     classDef highlight fill:#f96,stroke:#333,stroke-width:2px,color:#fff
     style B fill:#bbf,stroke:#333
 ```
+
+</td>
+<td>
+<img src="examples/style.png" alt="Style directives rendered by MermaidSwift" width="300">
+</td>
+</tr>
+</table>
+
+### Dark Mode
+
+<table>
+<tr><th>Light Mode (default)</th><th>Dark Mode</th></tr>
+<tr>
+<td>
+<img src="examples/flowchart.png" alt="Light mode flowchart" width="300">
+</td>
+<td>
+<img src="examples/dark_mode.png" alt="Dark mode flowchart" width="300">
+</td>
+</tr>
+</table>
 
 ## Architecture
 
@@ -417,7 +503,7 @@ Sources/MermaidSwift/
 
 ## Tests
 
-112 tests across 4 suites — all passing:
+122 tests across 5 suites — all passing:
 
 ```bash
 swift test
@@ -429,6 +515,7 @@ swift test
 | `DiagramLayoutTests` | 15 | Layout algorithms for all diagram types, dark mode config, edge routing |
 | `DiagramRendererTests` | 15 | Image generation for all types, PNG export, shapes, dark mode |
 | `MermaidSwiftIntegrationTests` | 22 | End-to-end parse → render → PNG for all diagram types |
+| `GenerateScreenshotsTests` | 10 | Generates all README example screenshots (flowchart, sequence, pie, class, state, gantt, ER, subgraph, style, dark mode) |
 
 ## Roadmap
 
