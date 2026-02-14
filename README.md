@@ -1,8 +1,10 @@
 # Mermaid-iOS
 
-Pure Swift Mermaid diagram renderer for iOS — no JavaScript, no WKWebView, no external dependencies.
+Pure Swift Mermaid diagram renderer — no JavaScript, no WKWebView, no external dependencies.
 
 Parses [Mermaid](https://mermaid.js.org/) diagram syntax and renders to `CGImage` using CoreGraphics.
+
+> **See also**: [Mermaid-Android](https://github.com/hggz/Mermaid-Android) — the Kotlin companion library with feature parity.
 
 ![Mermaid-iOS Screenshot](screenshot.png)
 
@@ -10,10 +12,17 @@ Parses [Mermaid](https://mermaid.js.org/) diagram syntax and renders to `CGImage
 
 - **Zero dependencies** — pure Swift + CoreGraphics, no CocoaPods/SPM packages needed
 - **No WebView** — renders natively, works in background threads and extensions
-- **Three diagram types**: Flowcharts, Sequence Diagrams, Pie Charts
-- **Full flowchart support**: 7 node shapes, 4 edge styles, edge labels, all directions (TD/TB/BT/LR/RL)
+- **7 diagram types**: Flowcharts, Sequence Diagrams, Pie Charts, Class Diagrams, State Diagrams, Gantt Charts, ER Diagrams
+- **Flowcharts**: 7 node shapes, 4 edge styles, edge labels, all 5 directions, subgraph support
+- **Class diagrams**: Classes with properties/methods, visibility modifiers, 6 relationship types, cardinalities, annotations
+- **State diagrams**: States, transitions, start/end markers, labels, descriptions
+- **Gantt charts**: Sections, tasks with statuses (done/active/critical), dependencies, date formatting
+- **ER diagrams**: Entities with typed attributes (PK/FK/UK keys), crow's foot notation, 4 cardinality types
 - **Sequence diagrams**: Participants, actors, 6 message arrow styles, lifelines
 - **Pie charts**: Titled, decimal values, color-coded slices with legend
+- **Style directives**: `classDef`, `class`, `style`, `:::className` for custom node styling
+- **Dark mode**: Built-in dark color scheme via `MermaidSwift.darkMode`
+- **Edge routing**: Liang-Barsky line-rectangle intersection algorithm to route edges around obstacles
 - **PNG export**: Render directly to `Data` for saving or sharing
 - **2x Retina rendering** out of the box
 
@@ -125,15 +134,83 @@ if let seq = diagram as? SequenceDiagram {
 ### Custom Configuration
 
 ```swift
-let config = LayoutConfig(
-    nodeWidth: 180,
-    nodeHeight: 50,
-    horizontalSpacing: 80,
-    verticalSpacing: 60,
-    fontSize: 16
-)
+var config = LayoutConfig()
+config.nodeWidth = 180
+config.nodeHeight = 50
+config.horizontalSpacing = 80
+config.verticalSpacing = 60
+config.fontSize = 16
 let renderer = MermaidSwift(config: config)
 let image = try renderer.render("flowchart TD\n    A --> B")
+```
+
+### Dark Mode
+
+```swift
+let darkRenderer = MermaidSwift.darkMode
+let image = try darkRenderer.render("""
+graph TD
+    A[Hello] --> B[Dark World]
+""")
+```
+
+### Class Diagrams
+
+```swift
+let image = try MermaidSwift().render("""
+classDiagram
+    class Animal {
+        +String name
+        +makeSound() void
+    }
+    class Dog {
+        +String breed
+        +fetch() void
+    }
+    Dog --|> Animal
+""")
+```
+
+### State Diagrams
+
+```swift
+let image = try MermaidSwift().render("""
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Done : finish
+    Done --> [*]
+""")
+```
+
+### Gantt Charts
+
+```swift
+let image = try MermaidSwift().render("""
+gantt
+    title Sprint Plan
+    dateFormat YYYY-MM-DD
+    section Design
+        Wireframes :a1, 2024-01-01, 10d
+        Review     :after a1, 5d
+    section Dev
+        Backend    :crit, 2024-01-15, 20d
+""")
+```
+
+### ER Diagrams
+
+```swift
+let image = try MermaidSwift().render("""
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER {
+        int id PK
+        string name
+        string email UK
+    }
+""")
 ```
 
 ## Supported Syntax
@@ -220,14 +297,113 @@ pie title Distribution
 </tr>
 </table>
 
+### Class Diagrams
+
+```mermaid
+classDiagram
+    class Animal {
+        +String name
+        #int age
+        +makeSound() void
+    }
+    class Dog {
+        +String breed
+        +fetch() void
+    }
+    Dog --|> Animal : inherits
+    Dog *-- Collar
+```
+
+| Relationship | Syntax | Marker |
+|-------------|--------|--------|
+| Inheritance | `<\|--` or `--\|>` | Triangle arrow |
+| Composition | `*--` | Filled diamond |
+| Aggregation | `o--` | Open diamond |
+| Association | `-->` | Arrow |
+| Dependency | `..>` | Dashed arrow |
+| Realization | `..\|>` | Dashed triangle |
+
+### State Diagrams
+
+```mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Done : finish
+    Done --> [*]
+```
+
+### Gantt Charts
+
+```mermaid
+gantt
+    title Sprint Plan
+    dateFormat YYYY-MM-DD
+    section Design
+        Wireframes :a1, 2024-01-01, 10d
+        Review     :after a1, 5d
+    section Development
+        Backend    :crit, 2024-01-15, 20d
+        Frontend   :active, 2024-01-20, 15d
+```
+
+| Task Status | Syntax |
+|------------|--------|
+| Normal | *(default)* |
+| Done | `done` |
+| Active | `active` |
+| Critical | `crit` |
+
+### ER Diagrams
+
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER {
+        int id PK
+        string name
+        string email UK
+    }
+```
+
+| Cardinality | Left | Right | Meaning |
+|------------|------|-------|---------|
+| Exactly one | `\|\|` | `\|\|` | One and only one |
+| Zero or one | `\|o` | `o\|` | Zero or one |
+| Zero or more | `o{` | `}o` | Zero or more |
+| One or more | `\|{` | `}\|` | One or more |
+
+### Subgraphs
+
+```mermaid
+graph TD
+    subgraph Frontend
+        A[React] --> B[Next.js]
+    end
+    subgraph Backend
+        C[Node.js] --> D[Express]
+    end
+    B --> C
+```
+
+### Style Directives
+
+```mermaid
+graph TD
+    A[Important]:::highlight --> B[Normal]
+    classDef highlight fill:#f96,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#bbf,stroke:#333
+```
+
 ## Architecture
 
 ```
 Sources/MermaidSwift/
-├── Model/DiagramModel.swift      # Diagram AST types
-├── Parser/MermaidParser.swift     # Mermaid DSL → Model
-├── Layout/DiagramLayout.swift     # Model → positioned elements
-├── Renderer/DiagramRenderer.swift # Positioned elements → CGImage
+├── Model/DiagramModel.swift      # Diagram AST types (7 diagram models)
+├── Parser/MermaidParser.swift     # Mermaid DSL → Model (regex-based)
+├── Layout/DiagramLayout.swift     # Model → positioned elements + edge routing
+├── Renderer/DiagramRenderer.swift # Positioned elements → CGImage (CoreGraphics)
 └── MermaidSwift.swift             # Public API facade
 ```
 
@@ -235,38 +411,46 @@ Sources/MermaidSwift/
 
 | Stage | What it does |
 |-------|-------------|
-| **Parse** | Regex-based parser converts Mermaid text into typed diagram models |
-| **Layout** | Topological sort (flowcharts), horizontal spacing (sequence), angle math (pie) |
-| **Render** | CoreGraphics bitmap context at 2x scale with all shapes, arrows, and text |
+| **Parse** | Regex-based parser converts Mermaid text into typed diagram models (7 types) |
+| **Layout** | Topological sort, grid layout, edge routing (Liang-Barsky), dark mode config |
+| **Render** | CoreGraphics bitmap context at 2x scale with shapes, arrows, markers, and text |
 
 ## Tests
 
-49 tests across 4 suites:
+112 tests across 4 suites — all passing:
 
 ```bash
-xcodebuild test \
-  -scheme MermaidSwiftTests \
-  -destination 'platform=iOS Simulator,name=iPhone 17'
+swift test
 ```
 
 | Suite | Tests | Coverage |
 |-------|-------|----------|
-| `MermaidParserTests` | 21 | Parsing, error handling, all diagram types |
-| `DiagramLayoutTests` | 9 | Positioning, topological sort, spacing |
-| `DiagramRendererTests` | 8 | Image generation, PNG export, shapes |
-| `MermaidSwiftIntegrationTests` | 11 | End-to-end rendering, large diagrams |
+| `MermaidParserTests` | 60 | All 7 diagram types, node shapes, edge styles, subgraphs, style directives, cardinalities |
+| `DiagramLayoutTests` | 15 | Layout algorithms for all diagram types, dark mode config, edge routing |
+| `DiagramRendererTests` | 15 | Image generation for all types, PNG export, shapes, dark mode |
+| `MermaidSwiftIntegrationTests` | 22 | End-to-end parse → render → PNG for all diagram types |
 
 ## Roadmap
 
-- [ ] Class diagrams
-- [ ] State diagrams  
-- [ ] Gantt charts
-- [ ] ER diagrams
-- [ ] Subgraph support
-- [ ] Style/theme directives (`style`, `classDef`)
-- [ ] Dark mode rendering
-- [ ] Swift Package Manager support
-- [ ] Edge routing (avoid node overlaps)
+- [x] Flowcharts (7 shapes, 4 edge styles, 5 directions)
+- [x] Sequence diagrams (participants, actors, 6 arrow styles)
+- [x] Pie charts (titled, colored slices, legend)
+- [x] Class diagrams (properties, methods, 6 relationship types, annotations)
+- [x] State diagrams (states, transitions, start/end markers)
+- [x] Gantt charts (sections, task statuses, dependencies)
+- [x] ER diagrams (entities, attributes with keys, crow's foot notation)
+- [x] Subgraph support (named groups in flowcharts)
+- [x] Style/theme directives (`classDef`, `class`, `style`, `:::className`)
+- [x] Dark mode rendering (`MermaidSwift.darkMode`)
+- [x] Swift Package Manager support
+- [x] Edge routing (Liang-Barsky intersection algorithm)
+- [ ] Mindmap diagrams
+- [ ] Timeline diagrams
+- [ ] Git graph diagrams
+- [ ] Click/link interactivity
+- [ ] Theming engine (CSS variable-based themes)
+- [ ] SVG export
+- [ ] Accessibility labels for rendered elements
 
 ## Contributing
 
