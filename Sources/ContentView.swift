@@ -55,6 +55,9 @@ struct ContentView: View {
             } message: {
                 Text("Image saved to Photos")
             }
+            .task {
+                await renderDiagram()
+            }
         }
     }
 
@@ -147,13 +150,13 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding()
             } else if let renderedImage {
-                ScrollView([.horizontal, .vertical]) {
+                GeometryReader { geo in
                     Image(uiImage: renderedImage)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .padding()
+                        .frame(width: geo.size.width, height: geo.size.height)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
             } else {
                 VStack(spacing: 8) {
                     Image(systemName: "photo.artframe")
@@ -210,14 +213,14 @@ struct ContentView: View {
     // MARK: - Sample
 
     static let sampleDiagram = """
-    sequenceDiagram
-        participant Client
-        participant Server
-        participant Database
-        Client->>Server: HTTP Request
-        Server->>Database: Query
-        Database-->>Server: Results
-        Server-->>Client: HTTP Response
+    flowchart TD
+        A[Start] --> B{Is it working?}
+        B -->|Yes| C[Great!]
+        B -->|No| D[Debug]
+        D --> E[Fix the code]
+        E --> B
+        C --> F((Deploy))
+        F --> G[End]
     """
 }
 
